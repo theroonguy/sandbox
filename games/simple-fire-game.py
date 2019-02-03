@@ -10,15 +10,15 @@ def action():
   
   if action == 'gather wood':
     wood += 1
-    print('Gathered 1 wood.')
+    print('Gathered 1 piece of wood')
     print('Wood: '+str(wood))
   elif action == 'stoke fire':
     if wood > 0:
       wood -= 1
       firelevel += 1
-      print('Stoked fire.\n-1 wood')
+      print('You stoked the fire.\n-1 wood')
     else:
-      print('Not enough wood.')
+      print('You don\'t have enough wood.')
   elif action == 'list':
     print('\nWood: '+str(wood)+'\nFire Level: '+str(firelevel))
   elif action == 'options':
