@@ -8,22 +8,22 @@ def action():
   
   action = (input('>> ')).lower()
   
-  if action == 'gather wood':
+  if action == 'gather wood' or action == '1':
     wood += 1
     print('Gathered 1 piece of wood')
     print('Wood: '+str(wood))
-  elif action == 'stoke fire':
+  elif action == 'stoke fire' or action == '2':
     if wood > 0:
       wood -= 1
       firelevel += 1
       print('You stoked the fire.\n-1 wood')
     else:
       print('You don\'t have enough wood.')
-  elif action == 'list':
+  elif action == 'list' or action == '3':
     print('\nWood: '+str(wood)+'\nFire Level: '+str(firelevel))
-  elif action == 'options':
+  elif action == 'options' or action == '4':
     options()
-  elif action == 'quit':
+  elif action == 'quit' or action == '5':
     quit()
   else:
     print('Sorry, I don\'t understand what you typed. Please try again.')
