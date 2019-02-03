@@ -10,7 +10,7 @@ def action():
   
   if action == 'gather wood' or action == '1':
     wood += 1
-    print('Gathered 1 piece of wood')
+    print('You gathered 1 piece of wood')
     print('Wood: '+str(wood))
   elif action == 'stoke fire' or action == '2':
     if wood > 0:
