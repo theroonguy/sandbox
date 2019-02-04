@@ -4,16 +4,24 @@ import random
 def init():
     global n, s, e, w, currentloc
     
-    n=0
-    s=0
-    w=0
-    e=0
-    
     currentloc='sleepingbag'
+    action()
 
-    bunker()
+def action():
+    action == input('>> ')
     
-def bunker():
+def sector(n, e, s, w, currentloc):
+    global n, e, s, w, currentloc
+    
+    n=n
+    e=e
+    s=s
+    w=w
+    currentloc=currentloc
+
+init()
+
+'''
     action = input('')
     
     if currentloc == 'sleepingbag':
@@ -40,3 +48,8 @@ def bunker():
         currentloc = s
     if action == 'e':
         currentloc = e
+
+    init()
+        
+init()
+'''
