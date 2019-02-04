@@ -10,8 +10,7 @@ def init():
     s=0
     w=0
     
-    sector('Sleeping Bag', 'door', 'corner', 'wall', 'shelf', 'sleepingbag')
-    action(currentloc, n, e, s, w)
+    loc('sleepingbag')
     
 def action(currentloc, n, e, s, w):
     action == input('>> ')
@@ -24,22 +23,26 @@ def action(currentloc, n, e, s, w):
         currentloc = s
     if action == 'w':
         currentloc = w
-
+    
     print(currentloc)
-    action(currentloc, n, e, s, w)
-        
-def loc():
-    sector('Sleeping Bag', 'door', 'corner', 'wall', 'shelf', 'sleepingbag')
+    loc(currentloc)
+    
+def loc(loc):
+
+    if loc == 'sleepingbag':
+        sleepingbag = sector('Sleeping Bag', 'door', 'corner', 'wall', 'wall', 'sleepingbag')
+    if loc == 'door':
+        sleepingbag = sector('Door', 'wall', 'shelf', 'sleepingbag', 'wall', 'door')
+    if loc == 'shelf':
+        sleepingbag = sector('A Shelf', 'wall', 'wall', 'corner', 'door', 'shelf')
+    if loc == 'corner':
+        sleepingbag = sector('Corner', 'shelf', 'wall', 'wall', 'sleepingbag', 'corner')
+    
     
 def sector(name, n, e, s, w, currentloc):
-    #    global name, n, e, s, w, currentloc
-    
     print(name+'\n')
-    n=n
-    e=e
-    s=s
-    w=w
-    currentloc=currentloc
+    
+    action(currentloc, n, e, s, w)
     
 init()
 
