@@ -12,31 +12,30 @@ def init():
     
     loc('sleepingbag')
     
-def action(currentloc, n, e, s, w):
-    action == input('>> ')
+def action(cl, n, e, s, w):
+    action = input('>> ')
     
     if action == 'n':
-        currentloc = n
-    if action == 'e':
-        currentloc = e
-    if action == 's':
-        currentloc = s
-    if action == 'w':
-        currentloc = w
+        cl = n
+    elif action == 'e':
+        cl = e
+    elif action == 's':
+        cl = s
+    elif action == 'w':
+        cl = w
     
-    print(currentloc)
-    loc(currentloc)
+    loc(cl)
     
 def loc(loc):
 
     if loc == 'sleepingbag':
-        sleepingbag = sector('Sleeping Bag', 'door', 'corner', 'wall', 'wall', 'sleepingbag')        
-    if loc == 'door':
-        door = sector('Door', 'wall', 'shelf', 'sleepingbag', 'wall', 'door')
-    if loc == 'shelf':
-        shelf = sector('A Shelf', 'wall', 'wall', 'corner', 'door', 'shelf')
-    if loc == 'corner':
-        corner = sector('Corner', 'shelf', 'wall', 'wall', 'sleepingbag', 'corner')
+        sector('Sleeping Bag', 'door', 'corner', 'wall', 'wall', 'sleepingbag')        
+    elif loc == 'door':
+        sector('Door', 'wall', 'shelf', 'sleepingbag', 'wall', 'door')
+    elif loc == 'shelf':
+        sector('A Shelf', 'wall', 'wall', 'corner', 'door', 'shelf')
+    elif loc == 'corner':
+        sector('Corner', 'shelf', 'wall', 'wall', 'sleepingbag', 'corner')
     
 def sector(name, n, e, s, w, currentloc):
     print(name+'\n')
