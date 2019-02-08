@@ -11,8 +11,16 @@ def init():
     w=0
 
     descs = []
-    
+
+    options()
     loc('sleepingbag')
+    
+def options():
+    print('''
+1. 'n', 's', 'e', and 'w' for movement
+2. 'o' or 'options' for options
+3. 'quit' for quit
+''')
     
 def action(cl, n, e, s, w):
     action = input('>> ')
@@ -32,7 +40,9 @@ def action(cl, n, e, s, w):
 
     elif action == 'l':
         loc(cl)
-        
+
+    elif action == 'options':
+        options()
     elif action == 'quit':
         quit()
 
@@ -65,5 +75,3 @@ def sector(name, n, e, s, w, currentloc, desc):
         print(desc)
 
     action(currentloc, n, e, s, w)
-    
-init()
