@@ -1,0 +1,8 @@
+import engine
+
+e = engine
+e.init()
+
+e.sector('sleepingbag','door','corner','wall','wall','sleepingbag','a random sleeping bag')
+e.sector('door','wall','shelf','sleepingbag','wall','door','a door thing')
+
