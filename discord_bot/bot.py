@@ -7,10 +7,10 @@ client = commands.Bot(command_prefix = 's/')
 
 @client.event
 async def on_ready():
-    print('On and ready!')
+    print('Awaiting your command')
 
 @client.command()
 async def ping():
-    await client.say('Pong!')
+    await client.say('Pong')
 
 client.run(TOKEN)
