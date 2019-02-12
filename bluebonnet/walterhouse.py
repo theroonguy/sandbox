@@ -56,15 +56,37 @@ def action(cl, n, e, s, w):
     
 def loc(loc):
 
-    if loc == 'bedroom':
-        sector('A room', 'window', 'wall', 'wall', 'hallway', 'bedroom','A bedroom thhing')        
-    elif loc == 'hallway':
-        sector('Hallway', 'bathroom', 'bedroom', 'wall', 'room', 'hallway', 'A hallway thing')
-    elif loc == 'shelf':
-        sector('A Shelf', 'wall', 'wall', 'corner', 'door', 'shelf','a random shelf thing')
-    elif loc == 'corner':
-        sector('Corner', 'shelf', 'wall', 'wall', 'sleepingbag', 'corner','a corner with nothing')
+	 if loc == 'bedroom':
+        sector('Room', 'wall', 'wall', 'wall', 'hallway', 'bedroom','A bedroom with two beds.')        
+	 elif loc == 'hallway':
+        sector('Hallway', 'bathroom', 'bedroom', 'wall', 'room', 'hallway', 'I enter into a hallway, dimly lit from unclear windows.')
+	 elif loc == 'bathroom':
+        sector('Bathroom', 'wall', 'wall', 'hallway', 'wall', 'bathroom','A bathroom.')        
+	 elif loc == 'room':
+        sector('A Large Room', 'wall', 'hallway', 'stairtop', 'wall', 'room', 'A larger room than the bedroom, with a smashed tv on the ground.')
+	 elif loc == 'stairtop':
+        sector('Top of Stairs', 'room', 'stairbottom', 'wall', 'wall', 'stairtop','The top of a staircase leading down to the east into darkness.')        
     
+	 elif loc == 'stairbottom':
+        sector('Bottom of Stairs', 'int1', 'kitchen', 'living room', 'stairtop', 'stairbottom', 'The bottom of a staircase.')
+	 elif loc == 'int1':
+        sector('Intersection', 'door', 'wall', 'stairbottom', 'dining', 'int1','I stand at an intersection.')        
+	 elif loc == 'door':
+        sector('A Boarded Door', 'wall', 'wall', 'int1', 'wall', 'door', 'A boarded door, impossible to get through with my bare hands.')
+	 elif loc == 'dining':
+        sector('Dining Room', 'office', 'int1', 'wall', 'bathroom2', 'dining', 'A dining room, with a large table in the center, nothing on it.')
+	 elif loc == 'office':
+        sector('Office', 'wall', 'wall', 'dining', 'wall', 'office','An office.')        
+	 elif loc == 'bathroom2':
+        sector('Another Bathroom', 'wall', 'dining', 'wall', 'wall', 'bathroom2', 'Another bathroom, almost pitch dark.')
+
+	 elif loc == 'kitchen':
+        sector('Kitchen', 'balcony', 'wall', 'wall', 'stairbottom', 'kitcen', 'A kitchen.')
+	 elif loc == 'int1':
+        sector('Intersection', 'door', 'wall', 'stairbottom', 'dining', 'int1','I stand at an intersection.')        
+	 elif loc == 'door':
+        sector('A Boarded Door', 'wall', 'wall', 'int1', 'wall', 'door', 'A boarded door, impossible to get through with my bare hands.')
+
 def sector(name, n, e, s, w, currentloc, desc):
     global descs
 
