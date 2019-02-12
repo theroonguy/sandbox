@@ -68,7 +68,7 @@ def loc(loc):
         sector('Top of Stairs', 'room', 'stairbottom', 'wall', 'wall', 'stairtop','The top of a staircase leading down. I can go back to the big room north, and to the east is the darkness of the staircase.')        
     
     elif loc == 'stairbottom':
-        sector('Bottom of Stairs', 'int1', 'kitchen', 'living room', 'stairtop', 'stairbottom', 'The bottom of a staircase. To the north is a dining room and a barred door. To the east is a kitchen, and south is a living room. I can go back up the stairs to the west.')
+        sector('Bottom of Stairs', 'int1', 'kitchen', 'living', 'stairtop', 'stairbottom', 'The bottom of a staircase. To the north is a dining room and a barred door. To the east is a kitchen, and south is a living room. I can go back up the stairs to the west.')
     elif loc == 'int1':
         sector('Intersection', 'door', 'wall', 'stairbottom', 'dining', 'int1','I stand at an intersection. To the north is a door, and to the west is a dining room. I can go back to the bottom of the stairs by going south')        
     elif loc == 'door':
@@ -81,8 +81,15 @@ def loc(loc):
         sector('Another Bathroom', 'wall', 'dining', 'wall', 'wall', 'bathroom2', 'Another bathroom, almost pitch dark. I can go back east.')
 
     elif loc == 'kitchen':
-        sector('Kitchen', 'balcony', 'wall', 'wall', 'stairbottom', 'kitcen', 'A kitchen, a balcony north and back to the bottom of the stairs to the west.')
-
+        sector('Kitchen', 'wall', 'wall', 'wall', 'stairbottom', 'kitchen', 'A kitchen, back to the bottom of the stairs to the west.')
+    elif loc == 'living':
+        sector('Living Room', 'stairbottom', 'wall', 'hallway2', 'courtyard', 'living', 'A big living room with a view of the kitchen north, and a view of a courtyard to the west. To the north is the bottom of the stairs, and to the south is another hallway.')
+    elif loc == 'hallway2':
+        sector('Hallway', 'living', 'wall', 'wall', 'bedroom2', 'hallway2', 'A bedroom to the west and the living room north.')
+    elif loc == 'bedroom2':
+        sector('Bedroom', 'wall', 'hallway2', 'wall', 'wall', 'bedroom2', 'Another bedroom, only exit to the west.')
+    elif loc == 'courtyard':
+        sector('Courtyard', 'wall', 'living', 'wall', 'wall', 'courtyard', 'A calm and peaceful courtyard. It\'s night outside, and a starry night. I can go back to the east.')
         
 def sector(name, n, e, s, w, currentloc, desc):
     global descs
