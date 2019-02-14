@@ -2,7 +2,7 @@ import time
 import random
     
 def init():
-    global currentloc, n, e, s, w, descs, locs
+    global currentloc, n, e, s, w, descs
     
     currentloc=0
     n=0
@@ -13,15 +13,15 @@ def init():
     descs = []
 
     options()
-    locs = []
+    loc('sleepingbag')
     
 def options():
     print('''
 1. 'n', 's', 'e', and 'w' for movement
 2. 'o' or 'options' for options
-3. 'quit' for quit
+3. 'q' or 'quit' for quit
 ''')
-
+    
 def action(cl, n, e, s, w):
     action = input('>> ')
     
@@ -38,44 +38,36 @@ def action(cl, n, e, s, w):
         if w != 'wall':
             cl = w
 
-#    elif action == 'l':
-#        loc(cl)
+    elif action == 'l':
+        loc(cl)
 
-    elif action == 'options':
+    elif action == 'o' or action == 'options':
         options()
-    elif action == 'quit':
+    elif action == 'q' or action == 'quit':
         quit()
 
     else:
         print('Sorry, I didn\'t understand.')
 
         
-    sector(cl, n, e, s, w, cl)
-
+    loc(cl)
     
 def loc(loc):
-    global locs
 
-
-    locs.append(loc)
-
-    print(locs)
-
-    start(locs)
+    # PUT CODE HERE
     
-
-def sector(name, n, e, s, w, currentloc, desc=''):
+    if loc == 'start':
+        sector('TITLE', 'n', 'e', 's', 'w', 'ID','DESC')        
+    
+def sector(name, n, e, s, w, currentloc, desc):
+    global descs
 
     print(name+'\n')
-    action(currentloc, n, e, s, w)
 
-'''
     if desc in descs:
         print('')
     else:
         descs.append(desc)
         print(desc)
-'''
 
-def start(locs):
-    sector(locs[0])
+    action(currentloc, n, e, s, w)

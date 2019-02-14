@@ -13,14 +13,15 @@ def init():
     descs = []
 
     options()
-
+    loc('sleepingbag')
+    
 def options():
     print('''
 1. 'n', 's', 'e', and 'w' for movement
 2. 'o' or 'options' for options
 3. 'quit' for quit
 ''')
-
+    
 def action(cl, n, e, s, w):
     action = input('>> ')
     
@@ -37,8 +38,8 @@ def action(cl, n, e, s, w):
         if w != 'wall':
             cl = w
 
-#    elif action == 'l':
-#        loc(cl)
+    elif action == 'l':
+        loc(cl)
 
     elif action == 'options':
         options()
@@ -49,13 +50,9 @@ def action(cl, n, e, s, w):
         print('Sorry, I didn\'t understand.')
 
         
-    sector(cl, n, e, s, w, cl, '')
-
-    '''
+    loc(cl)
+    
 def loc(loc):
-
-    
-    
 
     if loc == 'sleepingbag':
         sector('Sleeping Bag', 'door', 'corner', 'wall', 'wall', 'sleepingbag','a sleeping bag lol')        
@@ -65,7 +62,7 @@ def loc(loc):
         sector('A Shelf', 'wall', 'wall', 'corner', 'door', 'shelf','a random shelf thing')
     elif loc == 'corner':
         sector('Corner', 'shelf', 'wall', 'wall', 'sleepingbag', 'corner','a corner with nothing')
-'''    
+    
 def sector(name, n, e, s, w, currentloc, desc):
     global descs
 
