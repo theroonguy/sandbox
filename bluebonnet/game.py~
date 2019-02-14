@@ -1,8 +1,0 @@
-import time
-import random
-
-import story
-import walterhouse
-
-story.init()
-bunker.init()

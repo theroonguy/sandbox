@@ -1,8 +1,0 @@
-import time
-import random
-
-import story
-import bunker
-
-stori.init()
-bunker.init()
