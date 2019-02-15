@@ -12,9 +12,9 @@ tempF = round(((286 - data['main']['temp']) * 9/5 + 32),2)
 wind_speed = data['wind']['speed']
 description = data['weather'][0]['description']
 
-ftemp = 'Temperature : {} Degrees Fahrenheit'.format(tempF)
-fwind = 'Wind Speed : {} m/s'.format(wind_speed)
-fdesc = 'Description : {}'.format(description)
+ftemp = 'Temperature: {} Degrees Fahrenheit'.format(tempF)
+fwind = 'Wind Speed: {} m/s'.format(wind_speed)
+fdesc = 'Description: {}'.format(description)
 
 TOKEN = 'NTQzOTUzNDM2NTUxNDEzNzcw.D0EFWQ.koaPnK_GT59KJtfKqP4Xis2CqKI'
 
