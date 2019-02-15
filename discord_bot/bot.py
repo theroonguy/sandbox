@@ -22,7 +22,6 @@ async def on_ready():
 async def ping():
     await client.say('Pong')
 
-
 @client.command()
 async def weather():
 
@@ -34,7 +33,7 @@ async def weather():
 
     description = data['weather'][0]['description']
 
-    await client.say('Temperature : {} degree celcius'.format(temp))
+    await client.say('Temperature : {} degree fahrenheit'.format(temp))
     await client.say('Wind Speed : {} m/s'.format(wind_speed))
     await client.say('Latitude : {}'.format(latitude))
     await client.say('Longitude : {}'.format(longitude))
