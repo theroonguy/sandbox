@@ -8,10 +8,11 @@ res = requests.get(url)
 data = res.json()
 
 temp = data['main']['temp']
+tempF = (286K − data['main']['temp']) × 9/5 + 32
 wind_speed = data['wind']['speed']
 description = data['weather'][0]['description']
 
-ftemp = 'Temperature : {} Degrees Kelvin'.format(temp)
+ftemp = 'Temperature : {} Degrees Fahrenheit'.format(tempF)
 fwind = 'Wind Speed : {} m/s'.format(wind_speed)
 fdesc = 'Description : {}'.format(description)
 
