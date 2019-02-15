@@ -8,7 +8,7 @@ res = requests.get(url)
 data = res.json()
 
 temp = data['main']['temp']
-tempF = (286K − data['main']['temp']) × 9/5 + 32
+tempF = round(((286 - data['main']['temp']) * 9/5 + 32),2)
 wind_speed = data['wind']['speed']
 description = data['weather'][0]['description']
 
