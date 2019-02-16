@@ -23,13 +23,13 @@ async def w(*args):
     res = requests.get(url)
     data = res.json()
 
-    name = data['prayerspaces'][0]['name']
-    address = data['prayerspaces'][0]['address']
-    city = data['prayerspaces'][0]['city']
-    state = data['prayerspaces'][0]['state']
-    zip = data['prayerspaces'][0]['zip']
-    phone = data['prayerspaces'][0]['phone']
-    distance = data['prayerspaces'][0]['distance']
+    name = data['data']['prayerspaces']['name']
+    address = data['data']['prayerspaces']['address']
+    city = data['data']['prayerspaces']['city']
+    state = data['data']['prayerspaces']['state']
+    zip = data['data']['prayerspaces']['zip']
+    phone = data['data']['prayerspaces']['phone']
+    distance = data['data']['prayerspaces']['distance']
         
     fname = '{}'.format(name)
     faddress = '{}'.format(address)
