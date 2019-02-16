@@ -41,13 +41,13 @@ async def w(*args):
     tempF = round(((data['main']['temp'] - 273.15) * 9/5 + 32),2)
     wind_speed = data['wind']['speed']
     description = data['weather'][0]['description']
+    name = data['name']
     
     ftemp = 'Temperature: {} Degrees Fahrenheit'.format(tempF)
     fwind = 'Wind Speed: {} m/s'.format(wind_speed)
     fdesc = 'Description: {}'.format(description)
 
-    doutput = '**'.format(name)'**'
-    await client.say('Weather in {} is: '.format(doutput))
+    await client.say('Weather in {} is: '.format(name))
     await client.say(ftemp+'\n'+fwind+'\n'+fdesc)
     
 '''
