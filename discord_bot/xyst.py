@@ -10,7 +10,7 @@ client = commands.Bot(command_prefix = "-")
 async def on_ready():
     print("Bot is ready!")
 
-    
+
 
 @client.command()
 async def anime():
