@@ -16,17 +16,7 @@ async def on_ready():
 @client.command()
 async def ping():
     await client.say('Pong')
-'''
-@client.group(pass_context=True)
-async def weather(ctx):
-    if ctx.invoked_subcommand is None:
-        await client.say('Sorry, I didn\'t understand. Please try again.')
-
-@client.group(pass_context=True)
-async def w(ctx):
-    if ctx.invoked_subcommand is None:
-        await client.say('Sorry, I didn\'t understand. Please try again.')
-'''        
+      
 @client.command()
 async def w(*args):
     output = ''
@@ -46,63 +36,12 @@ async def w(*args):
     
     ftemp = 'Temperature: {} Degrees Fahrenheit'.format(tempF)
     fwind = 'Wind Speed: {} m/s'.format(wind_speed)
-    fdesc = 'Description: {} ({})'.format(main, description)
+    fdesc = 'Description: {}'.format(description)
 
     await client.say('Weather in **{}** is: '.format(name))
     await client.say(ftemp+'\n'+fwind+'\n'+fdesc)
     
-'''
-@weather.command()
-async def austin():
-    url = 'http://api.openweathermap.org/data/2.5/weather?q=Austin,us&appid=ac7c75b9937a495021393024d0a90c44'
-    res = requests.get(url)
-    data = res.json()
 
-    temp = data['main']['temp']
-    tempF = round(((data['main']['temp'] - 273.15) * 9/5 + 32),2)
-    wind_speed = data['wind']['speed']
-    description = data['weather'][0]['description']
-    
-    ftemp = 'Temperature: {} Degrees Fahrenheit'.format(tempF)
-    fwind = 'Wind Speed: {} m/s'.format(wind_speed)
-    fdesc = 'Description: {}'.format(description)
-
-    await client.say(ftemp+'\n'+fwind+'\n'+fdesc)
-
-@w.command()
-async def vienna():
-    url = 'http://api.openweathermap.org/data/2.5/weather?q=Vienna,us&appid=ac7c75b9937a495021393024d0a90c44'
-    res = requests.get(url)
-    data = res.json()
-
-    temp = data['main']['temp']
-    tempF = round(((data['main']['temp'] - 273.15) * 9/5 + 32),2)
-    wind_speed = data['wind']['speed']
-    description = data['weather'][0]['description']
-    
-    ftemp = 'Temperature: {} Degrees Fahrenheit'.format(tempF)
-    fwind = 'Wind Speed: {} m/s'.format(wind_speed)
-    fdesc = 'Description: {}'.format(description)
-
-    await client.say(ftemp+'\n'+fwind+'\n'+fdesc)
-
-@w.command()
-async def austin():
-    url = 'http://api.openweathermap.org/data/2.5/weather?q=Austin,us&appid=ac7c75b9937a495021393024d0a90c44'
-    res = requests.get(url)
-    data = res.json()
-
-    temp = data['main']['temp']
-    tempF = round(((data['main']['temp'] - 273.15) * 9/5 + 32),2)
-    wind_speed = data['wind']['speed']
-    description = data['weather'][0]['description']
-    
-    ftemp = 'Temperature: {} Degrees Fahrenheit'.format(tempF)
-    fwind = 'Wind Speed: {} m/s'.format(wind_speed)
-    fdesc = 'Description: {}'.format(description)
-
-    await client.say(ftemp+'\n'+fwind+'\n'+fdesc)
-'''
 @client.command()
 async def echo(*args):
     output = ''
