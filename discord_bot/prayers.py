@@ -39,7 +39,7 @@ async def w(*args):
     fphone = '{}'.format(phone)
 
     await client.say('**{}**'.format(name))
-    await client.say(faddress+'\n'+fcity+', '+fstate' '+fzip'\n'+fphone)
+    await client.say(faddress+'\n'+fcity+', '+fstate+' '+fzip+'\n'+fphone)
     
 
 @client.command()
