@@ -19,19 +19,19 @@ async def w(*args):
     for word in args:
         output += word
 
-    url = 'http://iphone.halalfire.com/salatomatic.php?l={}&uuid=1&key=O2A8Uo5ACzEXW7NnPYPX'.format(output)
+    url = 'http://iphone.halalfire.com/salatomatic_1.php?l={}&uuid=1&key=O2A8Uo5ACzEXW7NnPYPX'.format(output)
     res = requests.get(url)
     data = res.json()
 
-    await client.say(data['data']['status_text']+'\n')
-    await client.day(data['data']['prayerspaces']['name'])
-'''
-    address = data['data']['prayerspaces']['address']
-    city = data['data']['prayerspaces']['city']
-    state = data['data']['prayerspaces']['state']
-    zipcode = data['data']['prayerspaces']['zip']
-    phone = data['data']['prayerspaces']['phone']
-    distance = data['data']['prayerspaces']['distance']
+    await client.say(data['status_text']+'\n')
+    await client.day(data['prayerspaces']['name'])
+
+    address = data['prayerspaces']['address']
+    city = data['prayerspaces']['city']
+    state = data['prayerspaces']['state']
+    zipcode = data['prayerspaces']['zip']
+    phone = data['prayerspaces']['phone']
+    distance = data['prayerspaces']['distance']
 
     fname = '{}'.format(name)
     faddress = '{}'.format(address)
@@ -43,7 +43,6 @@ async def w(*args):
     await client.say('**{}**'.format(name))
 
     await client.say(faddress+'\n'+fcity+', '+fstate+' '+fzipcode+'\n'+fphone)
-'''
 
 @client.command()
 async def echo(*args):
