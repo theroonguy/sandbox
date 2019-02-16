@@ -4,9 +4,9 @@ import pprint
 import requests
     
 
-TOKEN = 'O2A8Uo5ACzEXW7NnPYPX'
+TOKEN = 'NTQzOTUzNDM2NTUxNDEzNzcw.D0EFWQ.koaPnK_GT59KJtfKqP4Xis2CqKI'
 
-client = commands.Bot(command_prefix = 's/')
+client = commands.Bot(command_prefix = 'pray/')
 
 
 @client.event

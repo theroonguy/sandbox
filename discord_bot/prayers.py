@@ -24,21 +24,21 @@ async def w(*args):
     data = res.json()
 
     name = data['prayerspaces'][0]['name']
-    address = data['prayerspaces'][0]['addresss']
+    address = data['prayerspaces'][0]['address']
     city = data['prayerspaces'][0]['city']
     state = data['prayerspaces'][0]['state']
     zip = data['prayerspaces'][0]['zip']
     phone = data['prayerspaces'][0]['phone']
     distance = data['prayerspaces'][0]['distance']
         
-    fname = '**{}**'.format(name)
+    fname = '{}'.format(name)
     faddress = '{}'.format(address)
     fcity = '{}'.format(city)
     fstate = '{}'.format(state)
     fzip = '{}'.format(zip)
     fphone = '{}'.format(phone)
 
-    await client.say('{}'.format(name))
+    await client.say('**{}**'.format(name))
     await client.say(faddress+'\n'+fcity+', '+fstate' '+fzip'\n'+fphone)
     
 
