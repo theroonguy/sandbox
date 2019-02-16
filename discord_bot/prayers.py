@@ -6,7 +6,7 @@ import requests
 
 TOKEN = 'NTQzOTUzNDM2NTUxNDEzNzcw.D0EFWQ.koaPnK_GT59KJtfKqP4Xis2CqKI'
 
-client = commands.Bot(command_prefix = 'pray/')
+client = commands.Bot(command_prefix = 'p/')
 
 
 @client.event
@@ -23,25 +23,27 @@ async def w(*args):
     res = requests.get(url)
     data = res.json()
 
-    name = data['data']['prayerspaces']['name']
-    address = data['data'][0]['prayerspaces']['address']
-    city = data['data'][0]['prayerspaces']['city']
-    state = data['data'][0]['prayerspaces']['state']
-    zip = data['data'][0]['prayerspaces']['zip']
-    phone = data['data'][0]['prayerspaces']['phone']
-    distance = data['data'][0]['prayerspaces']['distance']
+    await client.say(data['data']['status_text']+'\n')
+    await client.day(data['data']['prayerspaces']['name'])
+'''
+    address = data['data']['prayerspaces']['address']
+    city = data['data']['prayerspaces']['city']
+    state = data['data']['prayerspaces']['state']
+    zipcode = data['data']['prayerspaces']['zip']
+    phone = data['data']['prayerspaces']['phone']
+    distance = data['data']['prayerspaces']['distance']
 
     fname = '{}'.format(name)
     faddress = '{}'.format(address)
     fcity = '{}'.format(city)
     fstate = '{}'.format(state)
-    fzip = '{}'.format(zip)
+    fzipcode = '{}'.format(zipcode)
     fphone = '{}'.format(phone)
 
     await client.say('**{}**'.format(name))
 
-    await client.say(faddress+'\n'+fcity+', '+fstate+' '+fzip+'\n'+fphone)
-   
+    await client.say(faddress+'\n'+fcity+', '+fstate+' '+fzipcode+'\n'+fphone)
+'''
 
 @client.command()
 async def echo(*args):
