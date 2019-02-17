@@ -6,7 +6,7 @@ import requests
 
 TOKEN = 'NTQzOTUzNDM2NTUxNDEzNzcw.D0EFWQ.koaPnK_GT59KJtfKqP4Xis2CqKI'
 
-client = commands.Bot(command_prefix = 'p/')
+client = commands.Bot(command_prefix = 'pray ')
 
 
 @client.event
@@ -14,12 +14,12 @@ async def on_ready():
     print('Awaiting your command')
       
 @client.command()
-async def w(*args):
+async def near(*args):
     output = ''
     for word in args:
         output += word
 
-    url = 'http://iphone.halalfire.com/salatomatic_1.php?l={}&uuid=1&key=O2A8Uo5ACzEXW7NnPYPX'.format(output)
+    url = 'http://iphone.halalfire.com/bot_prayerspace.php?l={}&uuid=1&key=O2A8Uo5ACzEXW7NnPYPX'.format(output)
     res = requests.get(url)
     data = res.json()
 
