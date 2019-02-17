@@ -4,9 +4,10 @@ import pprint
 import requests
     
 
-TOKEN = 'NTQzOTUzNDM2NTUxNDEzNzcw.D0EFWQ.koaPnK_GT59KJtfKqP4Xis2CqKI'
+TOKEN = 'NTQ2NDkyNTYxMDQ1NDU0ODY4.D0pA0A.P7oXTCDd8ZNUtWxOyRlwbnZIpfI'
 
-client = commands.Bot(command_prefix = 'pray ')
+
+client = commands.Bot(command_prefix = 'z-')
 
 
 @client.event
@@ -14,7 +15,7 @@ async def on_ready():
     print('Awaiting your command')
       
 @client.command()
-async def near(*args):
+async def pray(*args):
     output = ''
     for word in args:
         output += word
@@ -36,10 +37,17 @@ async def near(*args):
     desc = data['data']['desc']
     zabiha_url = data['data']['url']
 
-    await client.say('{} {}\n{}\n{}\n'.format(status_text, distance, desc, photo))
-    await client.say('**{} {}**\n'.format(name, placetype))
-    await client.say('{}\n{} {} {} \n{}'.format(address, city, state, zipcode, phone))
-    await client.say('Check out {} for more info'.format(zabiha_url))
+    embed = discord.Embed(
+        colour = discord.Colour.red()
+    )
+
+    embed.add_field(name='{} {}'.format(status_text, distance), value=desc, inline=True)
+    embed.add_field(name=name,value='{}\n{} {} {} \n{}'.format(address, city, state, zipcode, phone),inline=False)
+    embed.set_footer(text='Check out {} for more info'.format(zabiha_url))
+    embed.set_image(url=photo)
+
+    await client.say(embed=embed)
+
 
 @client.command()
 async def echo(*args):
