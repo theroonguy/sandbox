@@ -91,6 +91,7 @@ async def eat(*args):
 
     if number == 0:
         await client.say('Error.')
+        
     status_text = data['data']['status_text']
     photo = data['data']['photo_url']
     name = data['data']['name']
