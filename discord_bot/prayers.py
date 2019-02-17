@@ -23,8 +23,8 @@ async def w(*args):
     res = requests.get(url)
     data = res.json()
 
-    await client.say(data['data']['status_text']+'\n')
-
+    status_text = data['data']['status_text']
+    photo = data['data']['photo_url']
     name = data['data']['name']
     placetype = data['data']['type']
     address = data['data']['address']
@@ -33,10 +33,13 @@ async def w(*args):
     zipcode = data['data']['zip']
     phone = data['data']['phone']
     distance = data['data']['distance']
+    desc = data['data']['desc']
+    zabiha_url = data['data']['url']
 
-    await client.say(data['data']['photo_url'])
+    await client.say('{} {}\n{}\n{}\n'.format(status_text, distance, desc, photo))
     await client.say('**{} {}**\n'.format(name, placetype))
-    await client.say('{}\n{} {} {} \n{}'.format(address, city, state, zipcode, phone))                   
+    await client.say('{}\n{} {} {} \n{}'.format(address, city, state, zipcode, phone))
+    await client.say('Check out {} for more info'.format(zabiha_url))
 
 @client.command()
 async def echo(*args):
