@@ -23,26 +23,22 @@ async def w(*args):
     res = requests.get(url)
     data = res.json()
 
-    await client.say(data['status_text']+'\n')
-    await client.day(data['prayerspaces']['name'])
+    await client.say(data['data']['status_text']+'\n')
+    
+    name = data['data']['name']
+    address = data['data']['address']
+    city = data['data']['city']
+    state = data['data']['state']
+    zipcode = data['data']['zip']
+    phone = data['data']['phone']
+    distance = data['data']['distance']
 
-    address = data['prayerspaces']['address']
-    city = data['prayerspaces']['city']
-    state = data['prayerspaces']['state']
-    zipcode = data['prayerspaces']['zip']
-    phone = data['prayerspaces']['phone']
-    distance = data['prayerspaces']['distance']
+    await client.say(data['data']['photo_url'])
+    await client.say('**{}**\n'.format(name))
+    await client.say(address+'\n'+city+', '+state+' '+zipcode+'\n'+phone)
 
-    fname = '{}'.format(name)
-    faddress = '{}'.format(address)
-    fcity = '{}'.format(city)
-    fstate = '{}'.format(state)
-    fzipcode = '{}'.format(zipcode)
-    fphone = '{}'.format(phone)
 
-    await client.say('**{}**'.format(name))
-
-    await client.say(faddress+'\n'+fcity+', '+fstate+' '+fzipcode+'\n'+fphone)
+    
 
 @client.command()
 async def echo(*args):
