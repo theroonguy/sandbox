@@ -24,8 +24,9 @@ async def w(*args):
     data = res.json()
 
     await client.say(data['data']['status_text']+'\n')
-    
+
     name = data['data']['name']
+    placetype = data['data']['type']
     address = data['data']['address']
     city = data['data']['city']
     state = data['data']['state']
@@ -34,11 +35,8 @@ async def w(*args):
     distance = data['data']['distance']
 
     await client.say(data['data']['photo_url'])
-    await client.say('**{}**\n'.format(name))
-    await client.say(address+'\n'+city+', '+state+' '+zipcode+'\n'+phone)
-
-
-    
+    await client.say('**{} {}**\n'.format(name, placetype))
+    await client.say('{}\n{} {} {} \n{}'.format(address, city, state, zipcode, phone))                   
 
 @client.command()
 async def echo(*args):
