@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import pprint
 import requests
+import re
 
 TOKEN = 'NTQ2NDkyNTYxMDQ1NDU0ODY4.D0pA0A.P7oXTCDd8ZNUtWxOyRlwbnZIpfI'
 
@@ -37,6 +38,10 @@ async def pray(*args):
     res = requests.get(url)
     data = res.json()
 
+    number = data['data']['number']
+    if number == 0:
+        await client.say(":x:  No nearby praying locations near {}.".format(output))
+
     status_text = data['data']['status_text']
     photo = data['data']['photo_url']
     name = data['data']['name']
@@ -50,6 +55,9 @@ async def pray(*args):
     desc = data['data']['desc']
     zabihah_url = data['data']['url']
 
+    if number == 1:
+        await client.say(':white_check_mark:  Found a place to pray near {} {}:'.format(city, state))
+        
     embed = discord.Embed(
         colour = discord.Colour.red()
     )
@@ -71,7 +79,7 @@ async def eat(*args):
         output+=word
         output+=' '
 
-    output2=tuple(output.split(','))
+    output2=tuple(output.split(' near '))
 
     output3 = []
     for word in output2:
@@ -79,18 +87,22 @@ async def eat(*args):
 
     output3.append(output3[0])
     del output3[0]
+
+    
+#   urllib.urlencode(output3[0])
+#   urllib.urlencode(output3[1])
 #   await client.say('Searching for '+output2[0])
     
     url = 'http://iphone.halalfire.com/bot_restaurant.php?uuid=1&key=O2A8Uo5ACzEXW7NnPYPX&l={}&k={}'.format(output3[0],output3[1])
     res = requests.get(url)
     data = res.json()
-
     await client.say(url)
-
     number = data['data']['number']
 
     if number == 0:
-        await client.say('Error.')
+        await client.say(':x:  No nearby places with {}.\n**USAGE** - z-eat [food] near [location]\n'.format(output3[1]))
+
+        
     status_text = data['data']['status_text']
     photo = data['data']['photo_url']
     name = data['data']['name']
@@ -103,7 +115,11 @@ async def eat(*args):
     desc = data['data']['desc']
     tags = data['data']['tags']
     zabihah_url = data['data']['url']
+    keyword = data['data']['keyword']
 
+    if number == 1:
+        await client.say(':white_check_mark:  Found a place to eat{}near {} {}:'.format(keyword, city, state))
+        
     embed = discord.Embed(
         colour = discord.Colour.red()
     )
