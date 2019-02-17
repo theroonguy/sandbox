@@ -2,13 +2,10 @@ import discord
 from discord.ext import commands
 import pprint
 import requests
-    
 
 TOKEN = 'NTQ2NDkyNTYxMDQ1NDU0ODY4.D0pA0A.P7oXTCDd8ZNUtWxOyRlwbnZIpfI'
 
-
 client = commands.Bot(command_prefix = 'z-')
-
 
 @client.event
 async def on_ready():
@@ -35,20 +32,19 @@ async def pray(*args):
     phone = data['data']['phone']
     distance = data['data']['distance']
     desc = data['data']['desc']
-    zabihah_url = data['data']['url']
+    zabiha_url = data['data']['url']
 
     embed = discord.Embed(
         colour = discord.Colour.red()
     )
 
-    embed.add_field(name='Brought to you by ZabihahBot', value='{} {}'.format(desc, distance), inline=True)
+    embed.add_field(name='{} {}'.format(status_text, distance), value=desc, inline=True)
     embed.add_field(name=name,value='{}\n{} {} {} \n{}'.format(address, city, state, zipcode, phone),inline=False)
-    embed.set_footer(text='Check out the link below for more info')
+    embed.set_footer(text='[Click here for more info] ({})'.format(zabiha_url))
     embed.set_image(url=photo)
-    embed.set_thumbnail(url='https://www.zabihah.com/img/logo_zabihah_bot.png')
 
     await client.say(embed=embed)
-    await client.say(zabihah_url)
+
 
 @client.command()
 async def echo(*args):
