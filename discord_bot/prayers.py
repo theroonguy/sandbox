@@ -35,19 +35,20 @@ async def pray(*args):
     phone = data['data']['phone']
     distance = data['data']['distance']
     desc = data['data']['desc']
-    zabiha_url = data['data']['url']
+    zabihah_url = data['data']['url']
 
     embed = discord.Embed(
         colour = discord.Colour.red()
     )
 
-    embed.add_field(name='{} {}'.format(status_text, distance), value=desc, inline=True)
+    embed.add_field(name='Brought to you by ZabihahBot', value='{} {}'.format(desc, distance), inline=True)
     embed.add_field(name=name,value='{}\n{} {} {} \n{}'.format(address, city, state, zipcode, phone),inline=False)
-    embed.set_footer(text='Check out {} for more info'.format(zabiha_url))
+    embed.set_footer(text='Check out the link below for more info')
     embed.set_image(url=photo)
+    embed.set_thumbnail(url='https://www.zabihah.com/img/logo_zabihah_bot.png')
 
     await client.say(embed=embed)
-
+    await client.say(zabihah_url)
 
 @client.command()
 async def echo(*args):
