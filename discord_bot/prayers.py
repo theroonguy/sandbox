@@ -10,7 +10,23 @@ client = commands.Bot(command_prefix = 'z-')
 @client.event
 async def on_ready():
     print('Awaiting your command')
-      
+'''
+@client.event
+async def on_message(message):
+
+    channel = message.channel
+    
+    embed = discord.Embed(
+        colour = discord.Colour.orange()
+    )
+
+    embed.set_author(name='Help')
+    embed.add_field(name='pray', value='Usage: z-pray (location)')
+    embed.add_field(name='eat', value='Usage: z-eat (all | (food)) (location)')
+
+    if message.content == 'z-help':
+        await client.send_message(channel, '```Commands:\nz-pray ( location ) -- shows you the closet available praying location\nz-eat ( all | [foodtype] ) ( location ) -- shows you the closest available eating location with a specific food```')
+'''
 @client.command()
 async def pray(*args):
     output = ''
@@ -41,8 +57,7 @@ async def pray(*args):
     embed.add_field(name='Brought to you by ZabihahBot', value='{} {}'.format(desc, distance), inline=True)
     embed.add_field(name=name,value='{}\n{} {} {} \n{}'.format(address, city, state, zipcode, phone),inline=False)
 
-    embed.set_footer(text='Check out the link below for more info')
-    embed.set_footer(text='[Click here for more info] ({})'.format(zabiha_url))
+    embed.set_footer(text='Click on the link for more info')
     embed.set_image(url=photo)
     embed.set_thumbnail(url='https://www.zabihah.com/img/logo_zabihah_bot.png')
 
@@ -50,19 +65,21 @@ async def pray(*args):
     await client.say(zabihah_url)
 
 @client.command()
-async def find(*args):
-    output2 = ''
+async def eat(*args):
+    output = []
     for word in args:
-        output2 += word
+        output.append(word)
 
-    url = 'http://iphone.halalfire.com/bot_restaurant.php?uuid=1&key=O2A8Uo5ACzEXW7NnPYPX&l={}&k={}'.format(output2, output3)
+    output.append(output[0])
+    del output[0]
+
+    url = 'http://iphone.halalfire.com/bot_restaurant.php?uuid=1&key=O2A8Uo5ACzEXW7NnPYPX&l={}&k={}'.format(output[0],output[1])
     res = requests.get(url)
     data = res.json()
 
     status_text = data['data']['status_text']
     photo = data['data']['photo_url']
     name = data['data']['name']
-    placetype = data['data']['type']
     address = data['data']['address']
     city = data['data']['city']
     state = data['data']['state']
@@ -71,26 +88,18 @@ async def find(*args):
     distance = data['data']['distance']
     desc = data['data']['desc']
     tags = data['data']['tags']
-    zabiha_url = data['data']['url']    
+    zabihah_url = data['data']['url']    
 
-    embed = discord.Embed{
+    embed = discord.Embed(
         colour = discord.Colour.red()
     )
 
-    embed.add_field(name='{} {}'.format(status_text, distance), value=desc, inline=True)
+    embed.add_field(name='{}'.format(status_text), value="{} {}".format(desc, distance), inline=True)
     embed.add_field(name=name,value='{}\n{}\n{} {} {} \n{}'.format(tags, address, city, state, zipcode, phone),inline=False)
-    embed.set_footer(text='[Click here for more info] ({})'.format(zabiha_url))
+    embed.set_footer(text='Click on the link below for more info'.format(zabihah_url))
     embed.set_image(url=photo)
 
     await client.say(embed=embed)
-
-
-@client.command()
-async def echo(*args):
-    output = ''
-    for word in args:
-        output += word
-        output += ' '
-    await client.say(output)
-
+    await client.say(zabihah_url)
+ 
 client.run(TOKEN)
