@@ -26,7 +26,7 @@ password.grid(row=1)
 entry1.grid(row=0, column=1)
 entry2.grid(row=1, column=1)
 
-button1 = Button(middleframe, text='This is a button', bg='purple', fg='purple')
+button1 = Button(middleframe, text='This is a button', bg='purple', fg='white')
 button1.grid(row=0, column=2)
 
 '''
