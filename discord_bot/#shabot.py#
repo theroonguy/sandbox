@@ -1,0 +1,53 @@
+import discord
+from discord.ext import commands
+import pprint
+import requests
+    
+
+TOKEN = 'NTQzOTUzNDM2NTUxNDEzNzcw.D0EFWQ.koaPnK_GT59KJtfKqP4Xis2CqKI'
+
+client = commands.Bot(command_prefix = 's/')
+
+
+@client.event
+async def on_ready():
+    print('Awaiting your command')
+
+@client.command()
+async def ping():
+    await client.say('Pong')
+      
+@client.command()
+async def w(*args):
+    output = ''
+    for word in args:
+        output += word
+
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={},us&appid=ac7c75b9937a495021393024d0a90c44'.format(output)
+    res = requests.get(url)
+    data = res.json()
+
+    temp = data['main']['temp']
+    tempF = round(((data['main']['temp'] - 273.15) * 9/5 + 32),2)
+    wind_speed = data['wind']['speed']
+    description = data['weather'][0]['description']
+    name = data['name']
+    main = data['weather']['main']
+    
+    ftemp = 'Temperature: {} Degrees Fahrenheit'.format(tempF)
+    fwind = 'Wind Speed: {} m/s'.format(wind_speed)
+    fdesc = 'Description: {}'.format(description)
+
+    await client.say('Weather in **{}** is: '.format(name))
+    await client.say(ftemp+'\n'+fwind+'\n'+fdesc)
+    
+
+@client.command()
+async def echo(*args):
+    output = ''
+    for word in args:
+        output += word
+        output += ' '
+    await client.say(output)
+
+client.run(TOKEN)
