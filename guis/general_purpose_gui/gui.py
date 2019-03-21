@@ -3,23 +3,27 @@ import requests
         
 def get_weather():
     output=wplace.get()
+    output.strip(' ')
     
     url = 'http://api.openweathermap.org/data/2.5/weather?q={},us&appid=ac7c75b9937a495021393024d0a90c44'.format(output)
     res = requests.get(url)
     data = res.json()
-    
-    temp = data['main']['temp']
-    tempF = round(((temp - 273.15) * 9/5 + 32),2)
-    wind_speed = data['wind']['speed']
-    description = data['weather'][0]['description']
-    name = data['name']
 
-    ftemp = 'Temperature: {} Degrees Fahrenheit'.format(tempF)
-    fwind = 'Wind Speed: {} m/s'.format(wind_speed)
-    fdesc = 'Description: {}'.format(description)
-
-    label=Label(sidebar, text='{}\n{}\n{}'.format(ftemp, fwind, fdesc, bg='light grey', fg='blue'))
-    label.grid(row=2)
+    try:
+        temp = data['main']['temp']
+        tempF = round(((temp - 273.15) * 9/5 + 32),2)
+        wind_speed = data['wind']['speed']
+        description = data['weather'][0]['description']
+        name = data['name']
+        
+        ftemp = 'Temperature: {} Degrees Fahrenheit'.format(tempF)
+        fwind = 'Wind Speed: {} m/s'.format(wind_speed)
+        fdesc = 'Description: {}'.format(description)
+        
+        label=Label(sidebar, text='{}\n{}\n{}'.format(ftemp, fwind, fdesc, bg='light grey', fg='blue'))
+        label.grid(row=2)
+    except:
+        Label(sidebar, text='Error').grid(row=2)
       
 root=Tk()
 
