@@ -20,7 +20,7 @@ def get_weather():
         fwind = 'Wind Speed: {} m/s'.format(wind_speed)
         fdesc = 'Description: {}'.format(description)
         
-        label=Label(sidebar, text='{}\n{}\n{}'.format(ftemp, fwind, fdesc, bg='light grey', fg='blue'))
+        label=Label(sidebar, text='Weather in {}: \n{}\n{}\n{}'.format(name, ftemp, fwind, fdesc, bg='light grey', fg='blue'))
         label.grid(row=2)
     except:
         Label(sidebar, text='Error').grid(row=2)
