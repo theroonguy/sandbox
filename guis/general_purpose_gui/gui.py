@@ -20,25 +20,27 @@ def get_weather():
         fwind = 'Wind Speed: {} m/s'.format(wind_speed)
         fdesc = 'Description: {}'.format(description)
         
-        label=Label(sidebar, text='Weather in {}: \n{}\n{}\n{}'.format(name, ftemp, fwind, fdesc, bg='light grey', fg='blue'))
+        label=Label(sidebar, text='Weather in {}: \n{}\n{}\n{}'.format(name, ftemp, fwind, fdesc, bg='light grey', fg='blue'), font=('Consolas',10))
         label.grid(row=2)
     except:
         Label(sidebar, text='Error').grid(row=2)
       
 root=Tk()
 
+root.geometry('1000x300')
+
 topframe=Frame(root)
 topframe.pack(fill=X)
-sidebar=Frame(root)
+sidebar=Frame(root, bd=1, relief=SUNKEN)
 sidebar.pack(side=RIGHT, fill=Y)
 midbar=Frame(root)
 midbar.pack()
 
-title = Label(topframe, text='GENERAL PURPOSE GUI', fg='purple')
+title = Label(topframe, text='GENERAL PURPOSE GUI', font = ('Consolas',30), fg='purple')
 title.pack(fill=X)
 
-Label(sidebar, text='WEATHER', fg='blue').grid(row=0)
-wplace=Entry(sidebar)
+Label(sidebar, text='WEATHER', font=('Consolas', 15), fg='blue').grid(row=0)
+wplace=Entry(sidebar, width=10)
 wplace.grid(row=1, column=0)
 wenter=Button(sidebar, text='Enter', command=get_weather)
 wenter.grid(row=1, column=1)
