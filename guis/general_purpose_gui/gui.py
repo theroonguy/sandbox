@@ -24,7 +24,15 @@ def get_weather():
         label.grid(row=2)
     except:
         Label(sidebar, text='Error').grid(row=2)
-      
+
+def location():
+    output=locbutton.get()
+    location=output
+
+    print(locbutton)
+    
+location=''
+    
 root=Tk()
 
 root.geometry('1000x300')
@@ -39,10 +47,19 @@ midbar.pack()
 title = Label(topframe, text='GENERAL PURPOSE GUI', font = ('Consolas',30), fg='purple')
 title.pack(fill=X)
 
+### INIT ###
 Label(sidebar, text='WEATHER', font=('Consolas', 15), fg='blue').grid(row=0)
 wplace=Entry(sidebar, width=10)
 wplace.grid(row=1, column=0)
 wenter=Button(sidebar, text='Enter', command=get_weather)
 wenter.grid(row=1, column=1)
+
+Label(midbar, text='LOCATION', fg='blue').grid(row=0)
+Entry(midbar, width=10).grid(row=1)
+locbutton=Button(midbar, text='ENTER', command=location)
+locbutton.grid(row=1, column=1)
+
+    
+init()
 
 mainloop()
