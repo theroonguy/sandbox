@@ -1,8 +1,11 @@
 from tkinter import *
 import requests
-        
+import random
+
+root=Tk()
+
 def get_weather():
-    output=wplace.get()
+    output=weather_place.get()
     output.strip(' ')
     
     url = 'http://api.openweathermap.org/data/2.5/weather?q={},us&appid=ac7c75b9937a495021393024d0a90c44'.format(output)
@@ -20,58 +23,44 @@ def get_weather():
         fwind = 'Wind Speed: {} m/s'.format(wind_speed)
         fdesc = 'Description: {}'.format(description)
         
-        label=Label(sidebar, text='Weather in {}: \n{}\n{}\n{}'.format(name, ftemp, fwind, fdesc, bg='light grey', fg='blue'), font=('Consolas',10))
+        label=Label(weather, text='Weather in {}: \n{}\n{}\n{}'.format(name, ftemp, fwind, fdesc, bg='light grey', fg='blue'), font=('Consolas',10))
         label.grid(row=2)
     except:
-        Label(sidebar, text='Error').grid(row=2)
+        Label(weather, text='Error').grid(row=2)
 
-def enter_loc():
-    loc_input=loc.get()
+        
+################### INIT ########################################
 
-    output=Label(midbar, text='Location set to: {}'.format(loc_input))
-    output.grid(row=2)
-
-    location=loc_input
-
-def display_loc():
-
-    print(location)
-    output=Label(midbar, text=location)
-    output.grid(column=2,row=1)
-    
-location=''
-    
-root=Tk()
 
 root.geometry('1000x300')
 
-topframe=Frame(root)
-topframe.pack(fill=X)
-sidebar=Frame(root, bd=1, relief=SUNKEN)
-sidebar.pack(side=RIGHT, fill=Y)
-midbar=Frame(root)
-midbar.pack()
-poemgen=Frame(root, bd=2, relief=SUNKEN)
+root_topf=Frame(root)
+root_topf.pack(fill=X)
+root_rightbar=Frame(root, bd=2, relief=SUNKEN)
+root_rightbar.pack(side=RIGHT, fill=Y)
+root_leftbar=Frame(root, bd=2, relief=SUNKEN)
+root_leftbar.pack(side=LEFT, fill=Y)
+root_midf=Frame(root)
+root_midf.pack()
+
+poemgen=Frame(root_leftbar, bd=1, relief=SUNKEN)
 poemgen.pack(side=LEFT, fill=Y)
+weather=Frame(root_rightbar, bd=1, relief=SUNKEN)
+weather.pack(side=RIGHT, fill=Y)
 
-title = Label(topframe, text='GENERAL PURPOSE GUI', font = ('Consolas',30), fg='purple')
-title.pack(fill=X)
+root_title = Label(root_topf, text='GENERAL PURPOSE GUI', font = ('Consolas',30), fg='purple')
+root_title.pack(fill=X)
 
-### INIT ###
-Label(sidebar, text='WEATHER', font=('Consolas', 15), fg='blue').grid(row=0)
-wplace=Entry(sidebar, width=10)
-wplace.grid(row=1, column=0)
-wenter=Button(sidebar, text='Enter', command=get_weather)
-wenter.grid(row=1, column=1)
 
-Label(midbar, text='LOCATION', fg='blue').grid(row=0)
-loc=Entry(midbar, width=10)
-loc.grid(row=1)
-locbutton=Button(midbar, text='Enter', command=enter_loc)
-locbutton.grid(row=1, column=1)
+################### WEATHER #####################################
 
-display_loc_button=Button(midbar, text='Display Location', command=display_loc)
-display_loc_button.grid(row=0, column=4)
+
+Label(weather, text='WEATHER', font=('Consolas', 15), fg='blue').grid(row=0)
+weather_place=Entry(weather, width=10)
+weather_place.grid(row=1, column=0)
+weather_enter=Button(weather, text='Enter', command=get_weather)
+weather_enter.grid(row=1, column=1)
+
 
 ################### POEM GENERATOR ##############################
 
@@ -114,10 +103,10 @@ def get_poem(rand_author):
         final.append(word)
         final.append('\n')
         
-    authorlabel=Label(midf, text='{} written by {}'.format(poem_title, rand_author))
+    authorlabel=Label(poem_midf, text='{} written by {}'.format(poem_title, rand_author))
     authorlabel.grid(row=0, column=0)
     
-    textlabel=Label(midf, text=' '.join(final))
+    textlabel=Label(poem_midf, text=' '.join(final))
     textlabel.grid(row=1, column=0)
 
 def clear_poem():
@@ -128,18 +117,18 @@ def clear_poem():
     except:
         print('no poems')
 
-topf=Frame(poemgen)
-topf.pack(fill=X)
-sidebar=Frame(poemgen)
-sidebar.pack(side=RIGHT, fill=Y)
+poem_topf=Frame(poemgen)
+poem_topf.pack(fill=X)
+poem_sidebar=Frame(poemgen)
+poem_sidebar.pack(side=RIGHT, fill=Y)
 
-midf=Frame(poemgen)
-midf.pack()
+poem_midf=Frame(poemgen)
+poem_midf.pack()
 
-title=Label(topf, text='POEM GENERATOR', font=('Consolas',30), fg='purple')
-title.pack(fill=X)
+poem_title=Label(poem_topf, text='POEM GENERATOR', font=('Consolas',30), fg='purple')
+poem_title.pack(fill=X)
 
-gen_button=Button(sidebar, text='Generate Poem', command=get_author)
-gen_button.pack()
+poem_gen_button=Button(poem_sidebar, text='Generate Poem', command=get_author)
+poem_gen_button.pack()
 
 mainloop()
