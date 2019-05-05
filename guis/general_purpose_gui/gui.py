@@ -125,7 +125,7 @@ poem_sidebar.pack(side=RIGHT, fill=Y)
 poem_midf=Frame(poemgen)
 poem_midf.pack()
 
-poem_title=Label(poem_topf, text='POEM GENERATOR', font=('Consolas',30), fg='purple')
+poem_title=Label(poem_topf, text='POEM GENERATOR', font=('Consolas',15), fg='blue')
 poem_title.pack(fill=X)
 
 poem_gen_button=Button(poem_sidebar, text='Generate Poem', command=get_author)
