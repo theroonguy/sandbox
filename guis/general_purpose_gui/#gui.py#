@@ -1,5 +1,6 @@
 from tkinter import *
 import requests
+import random
         
 def get_weather():
     output=wplace.get()
@@ -38,20 +39,19 @@ def display_loc():
     print(location)
     output=Label(midbar, text=location)
     output.grid(column=2,row=1)
+    
+location=''
+    
+root=Tk()
 
-def init():
-    location=''
-    
-    root=Tk()
-    
-    root.geometry('1000x300')
-    
-    topframe=Frame(root)
-    topframe.pack(fill=X)
-    sidebar=Frame(root, bd=1, relief=SUNKEN)
-    sidebar.pack(side=RIGHT, fill=Y)
-    midbar=Frame(root)
-    midbar.pack()
+root.geometry('1000x300')
+
+topframe=Frame(root)
+topframe.pack(fill=X)
+sidebar=Frame(root, bd=1, relief=SUNKEN)
+sidebar.pack(side=RIGHT, fill=Y)
+midbar=Frame(root)
+midbar.pack()
 
 title = Label(topframe, text='GENERAL PURPOSE GUI', font = ('Consolas',30), fg='purple')
 title.pack(fill=X)
