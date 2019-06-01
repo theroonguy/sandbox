@@ -1,36 +1,16 @@
 from tkinter import *
 import requests
 import random
+import datetime
 
 root=Tk()
-
-def get_weather():
-    output=weather_place.get()
-    output.strip(' ')
-    
-    url = 'http://api.openweathermap.org/data/2.5/weather?q={},us&appid=ac7c75b9937a495021393024d0a90c44'.format(output)
-    res = requests.get(url)
-    data = res.json()
-
-    try:
-        temp = data['main']['temp']
-        tempF = round(((temp - 273.15) * 9/5 + 32),2)
-        wind_speed = data['wind']['speed']
-        description = data['weather'][0]['description']
-        name = data['name']
-        
-        ftemp = 'Temperature: {} Degrees Fahrenheit'.format(tempF)
-        fwind = 'Wind Speed: {} m/s'.format(wind_speed)
-        fdesc = 'Description: {}'.format(description)
-        
-        label=Label(weather, text='Weather in {}: \n{}\n{}\n{}'.format(name, ftemp, fwind, fdesc, bg='light grey', fg='blue'), font=('Consolas',10))
-        label.grid(row=2)
-    except:
-        Label(weather, text='Error').grid(row=2)
 
         
 ################### INIT ########################################
 
+def get_date():
+    now = datetime.datetime.now()
+    return now.year, now.month, now.day
 
 root.geometry('1000x300')
 
@@ -56,7 +36,30 @@ root_title.pack(fill=X)
 
 ################### WEATHER #####################################
 
+def get_weather():
+    output=weather_place.get()
+    output.strip(' ')
+    
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={},us&appid=ac7c75b9937a495021393024d0a90c44'.format(output)
+    res = requests.get(url)
+    data = res.json()
 
+    try:
+        temp = data['main']['temp']
+        tempF = round(((temp - 273.15) * 9/5 + 32),2)
+        wind_speed = data['wind']['speed']
+        description = data['weather'][0]['description']
+        name = data['name']
+        
+        ftemp = 'Temperature: {} Degrees Fahrenheit'.format(tempF)
+        fwind = 'Wind Speed: {} m/s'.format(wind_speed)
+        fdesc = 'Description: {}'.format(description)
+        
+        label=Label(weather, text='Weather in {}: \n{}\n{}\n{}'.format(name, ftemp, fwind, fdesc, bg='light grey', fg='blue'), font=('Consolas',10))
+        label.grid(row=2)
+    except:
+        Label(weather, text='Error').grid(row=2)
+        
 Label(weather, text='WEATHER', font=('Consolas', 15), fg='blue').grid(row=0)
 weather_place=Entry(weather, width=10)
 weather_place.grid(row=1, column=0)
@@ -135,22 +138,26 @@ poem_gen_button.pack()
 
 ################### PRAYER TIMES ##############################
 
-def get_prayer():
+def get_timings():
 
-    url = 'https://api.aladhan.com/v1/calendar?latitude=39&longitude=-77&method=2&month=6&year=2019&day=1'
+    year = get_date()[0]
+    month = get_date()[1]
+    day = get_date()[2]
+    
+    url = 'https://api.aladhan.com/v1/calendar?latitude=39&longitude=-77&method=2&month={}&year={}&day={}'.format(month, year, day)
     res = requests.get(url)
     data = res.json()
     
     try:
-        fajr = data['data'][0]['timings']
-        print(fajr)
+        timings = data['data'][0]['timings']
+        Label(prayertime, text=timings).grid(row=2)
     except:
-        print('error')
+        Label(prayertime, text='error').grid(row=2)
         
 Label(prayertime, text='PRAYERS', font=('Consolas', 15), fg='blue').grid(row=0)
 prayer_place=Entry(prayertime, width=10)
 prayer_place.grid(row=1, column=0)
-prayer_enter=Button(prayertime, text='Enter', command=get_prayer)
+prayer_enter=Button(prayertime, text='Enter', command=get_timings)
 prayer_enter.grid(row=1, column=1)
 
 
