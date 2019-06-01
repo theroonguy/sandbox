@@ -1,7 +1,6 @@
 from tkinter import *
 import requests
 import random
-import prayertimes
 
 root=Tk()
 
@@ -48,7 +47,7 @@ poemgen=Frame(root_leftbar, bd=1, relief=SUNKEN)
 poemgen.pack(side=LEFT)
 weather=Frame(root_rightbar, bd=1, relief=SUNKEN)
 weather.pack(side=RIGHT)
-prayertime=Frame(root_midf, bd=1, relief=SUNKEN)
+prayertime=Frame(root_leftbar, bd=1, relief=SUNKEN)
 prayertime.pack(side=RIGHT)
 
 root_title = Label(root_topf, text='GENERAL PURPOSE GUI', font = ('Consolas',30), fg='purple')
@@ -136,6 +135,23 @@ poem_gen_button.pack()
 
 ################### PRAYER TIMES ##############################
 
+def get_prayer():
+
+    url = 'https://api.aladhan.com/v1/calendar?latitude=39&longitude=-77&method=2&month=6&year=2019&day=1'
+    res = requests.get(url)
+    data = res.json()
+    
+    try:
+        fajr = data['data'][0]['timings']
+        print(fajr)
+    except:
+        print('error')
+        
+Label(prayertime, text='PRAYERS', font=('Consolas', 15), fg='blue').grid(row=0)
+prayer_place=Entry(prayertime, width=10)
+prayer_place.grid(row=1, column=0)
+prayer_enter=Button(prayertime, text='Enter', command=get_prayer)
+prayer_enter.grid(row=1, column=1)
 
 
 mainloop()
