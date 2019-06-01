@@ -1,6 +1,7 @@
 from tkinter import *
 import requests
 import random
+import prayertimes
 
 root=Tk()
 
@@ -44,9 +45,11 @@ root_midf=Frame(root)
 root_midf.pack()
 
 poemgen=Frame(root_leftbar, bd=1, relief=SUNKEN)
-poemgen.pack(side=LEFT, fill=Y)
+poemgen.pack(side=LEFT)
 weather=Frame(root_rightbar, bd=1, relief=SUNKEN)
-weather.pack(side=RIGHT, fill=Y)
+weather.pack(side=RIGHT)
+prayertime=Frame(root_midf, bd=1, relief=SUNKEN)
+prayertime.pack(side=RIGHT)
 
 root_title = Label(root_topf, text='GENERAL PURPOSE GUI', font = ('Consolas',30), fg='purple')
 root_title.pack(fill=X)
@@ -130,5 +133,9 @@ poem_title.pack(fill=X)
 
 poem_gen_button=Button(poem_sidebar, text='Generate Poem', command=get_author)
 poem_gen_button.pack()
+
+################### PRAYER TIMES ##############################
+
+
 
 mainloop()
