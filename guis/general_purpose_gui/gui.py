@@ -185,7 +185,7 @@ Fajr: {}
 Dhuhr: {}
 Asr: {}
 Maghrib: {}
-Isha: {}'''.format(f, d, a, m, i)).grid(row=2)
+    Isha: {}'''.format(f, d, a, m, i), font=('Consolas', 10)).grid(row=2)
         
 Label(prayertime, text='PRAYERS', font=('Consolas', 15), fg='blue').grid(row=0)
 prayer_place=Entry(prayertime, width=10)
