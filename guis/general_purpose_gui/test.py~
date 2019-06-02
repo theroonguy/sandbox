@@ -1,8 +1,0 @@
-from praytimes import *
-
-PT = PrayTimes('ISNA')
-times = PT.getTimes((2019, 1, 6), (30, 97), -5)
-print('''
-Sunrise: {}
-Sunset: {}
-'''.format(times['sunrise'], times['sunset']))
