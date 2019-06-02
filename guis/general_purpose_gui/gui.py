@@ -12,6 +12,26 @@ def get_date():
     now = datetime.datetime.now()
     return now.year, now.month, now.day
 
+def get_coords():
+
+    place = prayer_place.get()
+    place.strip(' ')
+    
+    url = 'https://api.opencagedata.com/geocode/v1/json?q={}&key=3243e87472484e1c8471c7614a21734c'.format(place)
+    res = requests.get(url)
+    data = res.json()
+
+    lat = data['results'][0]['geometry']['lat']
+    lng = data['results'][0]['geometry']['lng']
+    totalresults = data['total_results']
+
+    status = 1
+    
+    if totalresults > 1:
+        output = 0
+
+    return lat, lng, status
+    
 root.geometry('1000x300')
 
 root_topf=Frame(root)
@@ -143,16 +163,27 @@ def get_timings():
     year = get_date()[0]
     month = get_date()[1]
     day = get_date()[2]
+
+    lat = get_coords()[0]
+    lng = get_coords()[1]
+    coordstatus = get_coords()[2]
     
-    url = 'https://api.aladhan.com/v1/calendar?latitude=39&longitude=-77&method=2&month={}&year={}&day={}'.format(month, year, day)
+    url = 'https://api.aladhan.com/v1/calendar?latitude={}&longitude={}&method=2&month={}&year={}&day={}'.format(lat, lng, month, year, day)
     res = requests.get(url)
     data = res.json()
     
-    try:
-        timings = data['data'][0]['timings']
-        Label(prayertime, text=timings).grid(row=2)
-    except:
-        Label(prayertime, text='error').grid(row=2)
+    f = data['data'][0]['timings']['Fajr']
+    d = data['data'][0]['timings']['Dhuhr']
+    a = data['data'][0]['timings']['Asr']
+    m = data['data'][0]['timings']['Maghrib']
+    i = data['data'][0]['timings']['Isha']
+    
+    Label(prayertime, text='''
+Fajr: {}
+Dhuhr: {}
+Asr: {}
+Maghrib: {}
+    Isha: {}'''.format(f, d, a, m, i)).grid(row=2)
         
 Label(prayertime, text='PRAYERS', font=('Consolas', 15), fg='blue').grid(row=0)
 prayer_place=Entry(prayertime, width=10)
