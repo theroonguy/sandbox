@@ -45,6 +45,8 @@ root_midf.pack()
 
 poemgen=Frame(root_leftbar, bd=1, relief=SUNKEN)
 poemgen.pack(side=LEFT)
+quitbutton=Frame(root_rightbar, bd=1, relief=SUNKEN)
+quitbutton.pack(side=BOTTOM)
 weather=Frame(root_rightbar, bd=1, relief=SUNKEN)
 weather.pack(side=RIGHT)
 prayertime=Frame(root_leftbar, bd=1, relief=SUNKEN)
@@ -183,7 +185,7 @@ Fajr: {}
 Dhuhr: {}
 Asr: {}
 Maghrib: {}
-    Isha: {}'''.format(f, d, a, m, i)).grid(row=2)
+Isha: {}'''.format(f, d, a, m, i)).grid(row=2)
         
 Label(prayertime, text='PRAYERS', font=('Consolas', 15), fg='blue').grid(row=0)
 prayer_place=Entry(prayertime, width=10)
@@ -191,5 +193,9 @@ prayer_place.grid(row=1, column=0)
 prayer_enter=Button(prayertime, text='Enter', command=get_timings)
 prayer_enter.grid(row=1, column=1)
 
+################### QUIT BUTTON ##############################
+
+qbutton = Button(quitbutton, text='QUIT', command=quit)
+qbutton.pack()
 
 mainloop()
