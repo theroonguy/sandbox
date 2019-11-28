@@ -9,11 +9,13 @@
   <body>
     <div>
       Microblog:
-      <a href="{{ url_for('index') }}">Home</a>
       {% if current_user.is_anonymous %}
       <a href="{{ url_for('login') }}">Login</a>
       {% else %}
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('blog') }}">Haroon's Blog</a>
       <a href="{{ url_for('logout') }}">Logout</a>
+      <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
       {% endif %}
     </div>
     <hr>
